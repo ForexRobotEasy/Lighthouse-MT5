@@ -1,0 +1,105 @@
+
+//+------------------------------------------------------------------+
+//| Expert advisor program 'Lighthouse MT5'                          |
+//| Developer's site: forexroboteasy.com                              |
+//| Development by: Forex Robot Easy Team                             |
+//|------------------------------------------------------------------|
+//| This program generates support and resistance levels based on     |
+//| the specified time frames and provides trading functions to       |
+//| identify and display these levels.                                |
+//|------------------------------------------------------------------|
+//| Version: 1.0                                                      |
+//| Date: [current date]                                              |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//| External parameters                                               |
+//+------------------------------------------------------------------+
+input int ScanMode = 0; // 0 - automated mode, 1 - intraday, 2 - medium, 3 - high
+
+//+------------------------------------------------------------------+
+//| Global variables                                                  |
+//+------------------------------------------------------------------+
+int current_support = 0;
+int current_resistance = 0;
+
+//+------------------------------------------------------------------+
+//| Initialization function                                           |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Add initialization code here
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Deinitialization function                                         |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    // Add deinitialization code here
+}
+
+//+------------------------------------------------------------------+
+//| Start function                                                    |
+//+------------------------------------------------------------------+
+void OnStart()
+{
+    // Determine the time frame based on the selected scan mode
+    int time_frame = 0;
+
+    if (ScanMode == 0)
+    {
+        time_frame = Period();
+    }
+    else if (ScanMode == 1)
+    {
+        time_frame = PERIOD_M15;
+    }
+    else if (ScanMode == 2)
+    {
+        time_frame = PERIOD_H1;
+    }
+    else if (ScanMode == 3)
+    {
+        time_frame = PERIOD_H4;
+    }
+
+    // Call the function to generate support and resistance levels
+    GenerateLevels(time_frame);
+
+    // Check if a support or resistance level is broken
+    if (IsLevelBroken())
+    {
+        // Perform actions when a level is broken
+        // Add code here to take appropriate trading actions
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Function to generate support and resistance levels                 |
+//+------------------------------------------------------------------+
+void GenerateLevels(const int time_frame)
+{
+    // Add code here to generate support and resistance levels
+    // based on the specified time frame
+    // Use global variables to store the current levels
+}
+
+//+------------------------------------------------------------------+
+//| Function to check if a support or resistance level is broken       |
+//+------------------------------------------------------------------+
+bool IsLevelBroken()
+{
+    // Add code here to check if a support or resistance level is broken
+    // Return true if a level is broken, false otherwise
+    return false;
+}
+
+//+------------------------------------------------------------------+
+//| Main program entry point                                          |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    // Add code here if needed
+}
